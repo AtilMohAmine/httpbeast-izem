@@ -552,7 +552,7 @@ proc run*(onRequest: OnRequest, settings: Settings) =
   else:
     let numThreads = 1
 
-  echo("Starting ", numThreads, " threads")
+  #echo("Starting ", numThreads, " threads")
   if numThreads > 1:
     when compileOption("threads"):
       var threads = newSeq[Thread[(OnRequest, Settings, bool)]](numThreads - 1)
@@ -573,7 +573,7 @@ proc run*(onRequest: OnRequest, settings: Settings) =
         )
     else:
       assert false
-  echo("Listening on port ", settings.port) # This line is used in the tester to signal readiness.
+  #echo("Listening on port ", settings.port) # This line is used in the tester to signal readiness.
   eventLoop((onRequest, settings, true))
 
 proc run*(onRequest: OnRequest) {.inline.} =
